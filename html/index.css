@@ -1,0 +1,66 @@
+body {
+      font-family: 'iransans', sans-serif;
+}
+
+#window {
+	margin: 20px auto;
+    height: 500px;
+    width: 700px;
+    background-color: rgba(34, 34, 34, 0.9);
+	border-radius: 5px;
+	display: none;
+}
+
+#header {
+    width: 100%;
+    background: #33f5e1;
+    box-shadow: 0px 2px 2px 2px rgba(2, 2, 2, 0.2);
+	border-radius: 5px 5px 0px 0px;
+}
+
+#header p{
+    text-align: center;
+    color: white;
+	padding: 10px 5px 8px 5px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.item{
+	width: 140px;
+	text-align: center;
+	float: right;
+	color:#fff;
+	font-size: 12px;
+}
+
+.item img{
+	border-radius: 10px;
+}
+
+.item p{
+	line-height: 1;
+}
+
+.btn {
+  background-color: #00a378;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 14px;
+  font-family: iransans;
+}
+
+.btn2 {
+  background-color: #e62200;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 18px;
+  font-family: iransans;
+  padding: 2px 20px 4px 20px;
+}
