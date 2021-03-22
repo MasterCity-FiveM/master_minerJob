@@ -64,21 +64,21 @@ AddEventHandler("master_minerJob:StartMining", function()
 					xPlayer.addInventoryItem("Iron", 1)
 				elseif randomItem >= 51 and  randomItem <= 100 then
 					xPlayer.addInventoryItem("Bronze", 1)
-				elseif randomItem >= 101 and  randomItem <= 120 and AxeRank >= 1 then
+				elseif randomItem >= 101 and  randomItem <= 120 and AxeRank >= 2 then
 					xPlayer.addInventoryItem("Silver", 1)
-				elseif randomItem >= 121 and  randomItem <= 140 and AxeRank >= 1 then
+				elseif randomItem >= 121 and  randomItem <= 140 and AxeRank >= 2 then
 					xPlayer.addInventoryItem("Gold", 1)
-				elseif randomItem >= 141 and  randomItem <= 150 and AxeRank >= 2 then
+				elseif randomItem >= 141 and  randomItem <= 150 and AxeRank >= 3 then
 					xPlayer.addInventoryItem("Diamond", 1)
-				elseif randomItem >= 151 and  randomItem <= 160 and AxeRank >= 2 then
+				elseif randomItem >= 151 and  randomItem <= 160 and AxeRank >= 3 then
 					xPlayer.addInventoryItem("PureGold", 1)
-				elseif randomItem >= 161 and  randomItem <= 166 and AxeRank >= 3 then
+				elseif randomItem >= 161 and  randomItem <= 166 and AxeRank >= 4 then
 					xPlayer.addInventoryItem("BlueEmerald", 1)
-				elseif randomItem >= 167 and  randomItem <= 172 and AxeRank >= 3 then
+				elseif randomItem >= 167 and  randomItem <= 172 and AxeRank >= 4 then
 					xPlayer.addInventoryItem("RedRuby", 1)
-				elseif randomItem == 210 and AxeRank >= 4 and not Rare1 then
+				elseif randomItem == 210 and AxeRank >= 4 and not HasRareItem then
 					xPlayer.addInventoryItem("KooheNoor", 1)
-				elseif randomItem == 220 and AxeRank >= 4 and not Rare1 then
+				elseif randomItem == 220 and AxeRank >= 4 and not HasRareItem then
 					xPlayer.addInventoryItem("DaryayeNoor", 1)
 				end
 				
