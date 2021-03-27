@@ -36,6 +36,8 @@ end)
 RegisterNetEvent('master_keymap:e')
 AddEventHandler('master_keymap:e', function() 
 	if isInMarker and not isMenuOn then
+		TriggerEvent("masterking32:closeAllUI")
+		Citizen.Wait(100)
 		SetDisplay(true)
 	elseif InMiningMarker and not UnderMining then
 		TriggerServerEvent("master_minerJob:StartMining")
@@ -72,6 +74,11 @@ Citizen.CreateThread(function()
 end)
 
 RegisterNUICallback("exit", function(data)
+	SetDisplay(false)
+end)
+
+RegisterNetEvent('masterking32:closeAllUI')
+AddEventHandler('masterking32:closeAllUI', function() 
 	SetDisplay(false)
 end)
 
