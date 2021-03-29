@@ -4,6 +4,7 @@ TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 RegisterNetEvent("master_minerJob:SellItem")
 AddEventHandler("master_minerJob:SellItem", function(item)
+	ESX.RunCustomFunction("anti_ddos", source, 'master_minerJob:SellItem', {item = item})
     local _source = source
     local xPlayer = ESX.GetPlayerFromId(_source)
     
@@ -20,6 +21,7 @@ end)
 
 RegisterNetEvent("master_minerJob:StartMining")
 AddEventHandler("master_minerJob:StartMining", function()
+	ESX.RunCustomFunction("anti_ddos", source, 'master_minerJob:StartMining', {})
     local _source = source
 	if UnderMiningPlayers[_source] ~= nil and UnderMiningPlayers[_source] ~= true then
 		TriggerClientEvent("pNotify:SendNotification", _source, { text = 'صبر کن یکم!', type = "error", timeout = 500, layout = "bottomCenter"})
