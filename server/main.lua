@@ -60,27 +60,27 @@ AddEventHandler("master_minerJob:StartMining", function()
 			TriggerClientEvent("master_minerJob:StartMining", _source)
 			Citizen.CreateThread(function()
 				Citizen.Wait(Config.Miningtime)
-				local randomItem = math.random(1,220)
+				local randomItem = math.random(1,350)
 				
 				if randomItem >= 0 and randomItem <= 50 then
 					xPlayer.addInventoryItem("Iron", 1)
 				elseif randomItem >= 51 and  randomItem <= 100 then
 					xPlayer.addInventoryItem("Bronze", 1)
-				elseif randomItem >= 101 and  randomItem <= 120 and AxeRank >= 2 then
+				elseif randomItem >= 101 and  randomItem <= 150 and AxeRank >= 2 then
 					xPlayer.addInventoryItem("Silver", 1)
-				elseif randomItem >= 121 and  randomItem <= 140 and AxeRank >= 2 then
+				elseif randomItem >= 151 and  randomItem <= 200 and AxeRank >= 2 then
 					xPlayer.addInventoryItem("Gold", 1)
-				elseif randomItem >= 141 and  randomItem <= 150 and AxeRank >= 3 then
+				elseif randomItem >= 201 and  randomItem <= 250 and AxeRank >= 3 then
 					xPlayer.addInventoryItem("Diamond", 1)
-				elseif randomItem >= 151 and  randomItem <= 160 and AxeRank >= 3 then
+				elseif randomItem >= 251 and  randomItem <= 280 and AxeRank >= 3 then
 					xPlayer.addInventoryItem("PureGold", 1)
-				elseif randomItem >= 161 and  randomItem <= 166 and AxeRank >= 4 then
+				elseif randomItem >= 281 and  randomItem <= 300 and AxeRank >= 4 then
 					xPlayer.addInventoryItem("BlueEmerald", 1)
-				elseif randomItem >= 167 and  randomItem <= 172 and AxeRank >= 4 then
+				elseif randomItem >= 301 and  randomItem <= 320 and AxeRank >= 4 then
 					xPlayer.addInventoryItem("RedRuby", 1)
-				elseif randomItem == 210 and AxeRank >= 4 and not HasRareItem then
+				elseif randomItem == 340 and AxeRank >= 4 and not HasRareItem then
 					xPlayer.addInventoryItem("KooheNoor", 1)
-				elseif randomItem == 220 and AxeRank >= 4 and not HasRareItem then
+				elseif randomItem == 350 and AxeRank >= 4 and not HasRareItem then
 					xPlayer.addInventoryItem("DaryayeNoor", 1)
 				end
 				
