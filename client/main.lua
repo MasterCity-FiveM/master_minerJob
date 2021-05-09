@@ -219,6 +219,12 @@ AddEventHandler('master_minerJob:StartMining', function()
     Citizen.CreateThread(function()
 		local player = PlayerPedId()	
 		SetCurrentPedWeapon(player,GetHashKey("WEAPON_UNARMED"),true)
+		if pickaxe ~= nil then
+			DetachEntity(pickaxe, 1, true)
+			DeleteEntity(pickaxe)
+			DeleteObject(pickaxe)
+		end
+		
 		pickaxe = CreateObject(GetHashKey("prop_tool_pickaxe"), 0, 0, 0, true, true, true) 
 		AttachEntityToEntity(pickaxe, PlayerPedId(), GetPedBoneIndex(PlayerPedId(), 57005), 0.18, -0.02, -0.02, 350.0, 100.00, 140.0, true, true, false, true, 1, true)
 		

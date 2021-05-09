@@ -61,7 +61,7 @@ AddEventHandler("master_minerJob:StartMining", function()
 			Citizen.CreateThread(function()
 				Citizen.Wait(Config.Miningtime)
 				local randomItem = math.random(1,350)
-				local randomBroken = math.random(1,200)
+				local randomBroken = math.random(1,300)
 				
 				if randomItem >= 0 and randomItem <= 50 then
 					xPlayer.addInventoryItem("Iron", 1)
@@ -80,12 +80,14 @@ AddEventHandler("master_minerJob:StartMining", function()
 				elseif randomItem >= 301 and  randomItem <= 320 and AxeRank >= 4 then
 					xPlayer.addInventoryItem("RedRuby", 1)
 				elseif randomItem == 340 and AxeRank >= 4 and not HasRareItem then
+					ESX.RunCustomFunction("discord", xPlayer.source, 'mining', 'Rare Mine', "Koohe Noor")
 					xPlayer.addInventoryItem("KooheNoor", 1)
 				elseif randomItem == 350 and AxeRank >= 4 and not HasRareItem then
+					ESX.RunCustomFunction("discord", xPlayer.source, 'mining', 'Rare Mine', "Daryaye Noor")
 					xPlayer.addInventoryItem("DaryayeNoor", 1)
 				end
 				
-				if randomBroken == 200 then
+				if randomBroken == 300 then
 					if AxeRank >= 4 then
 						xPlayer.addInventoryItem("Pickaxe4Broken", 1)
 						xPlayer.removeInventoryItem('Pickaxe4', 1)
@@ -118,9 +120,9 @@ function GetItemCount(source, item)
     local items = xPlayer.getInventoryItem(item)
 
     if items == nil then
-        return 0
+		return 0
     else
-        return items.count
+		return items.count
     end
 end
 
