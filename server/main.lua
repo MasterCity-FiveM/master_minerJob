@@ -61,6 +61,7 @@ AddEventHandler("master_minerJob:StartMining", function()
 			Citizen.CreateThread(function()
 				Citizen.Wait(Config.Miningtime)
 				local randomItem = math.random(1,350)
+				local randomBroken = math.random(1,200)
 				
 				if randomItem >= 0 and randomItem <= 50 then
 					xPlayer.addInventoryItem("Iron", 1)
@@ -84,6 +85,23 @@ AddEventHandler("master_minerJob:StartMining", function()
 					xPlayer.addInventoryItem("DaryayeNoor", 1)
 				end
 				
+				if randomBroken == 200 then
+					if AxeRank >= 4 then
+						xPlayer.addInventoryItem("Pickaxe4Broken", 1)
+						xPlayer.removeInventoryItem('Pickaxe4', 1)
+					elseif AxeRank == 3 then
+						xPlayer.addInventoryItem("Pickaxe3Broken", 1)
+						xPlayer.removeInventoryItem('Pickaxe3', 1)
+					elseif AxeRank == 2 then
+						xPlayer.addInventoryItem("Pickaxe2Broken", 1)
+						xPlayer.removeInventoryItem('Pickaxe2', 1)
+					elseif AxeRank == 2 then
+						xPlayer.addInventoryItem("Pickaxe1Broken", 1)
+						xPlayer.removeInventoryItem('Pickaxe1', 1)
+					end
+					TriggerClientEvent("pNotify:SendNotification", _source, { text = 'کلنگ شما شکست لطفا با ابزار آنرا تعمیر کنید.', type = "error", timeout = 8000, layout = "bottomCenter"})
+				end
+				
 				TriggerClientEvent("master_minerJob:FinishMining", _source)
 				UnderMiningPlayers[_source] = nil
 			end)
@@ -92,5 +110,39 @@ AddEventHandler("master_minerJob:StartMining", function()
 			TriggerClientEvent("pNotify:SendNotification", _source, { text = 'با دست خالی میخوای کوه بکنی؟ برو خدا روزیتو جای دیگه حواله کنه!!', type = "error", timeout = 4000, layout = "bottomCenter"})
 			return
 		end
+	end
+end)
+
+function GetItemCount(source, item)
+    local xPlayer = ESX.GetPlayerFromId(source)
+    local items = xPlayer.getInventoryItem(item)
+
+    if items == nil then
+        return 0
+    else
+        return items.count
+    end
+end
+
+ESX.RegisterUsableItem('PickaxeRepair', function(source)
+	local xPlayer = ESX.GetPlayerFromId(source)
+	if GetItemCount(xPlayer.source, 'Pickaxe4Broken') > 0 then
+		xPlayer.addInventoryItem("Pickaxe4", 1)
+		xPlayer.removeInventoryItem('Pickaxe4Broken', 1)
+		xPlayer.removeInventoryItem('PickaxeRepair', 1)
+	elseif GetItemCount(xPlayer.source, 'Pickaxe3Broken') > 0 then
+		xPlayer.addInventoryItem("Pickaxe3", 1)
+		xPlayer.removeInventoryItem('Pickaxe3Broken', 1)
+		xPlayer.removeInventoryItem('PickaxeRepair', 1)
+	elseif GetItemCount(xPlayer.source, 'Pickaxe2Broken') > 0 then
+		xPlayer.addInventoryItem("Pickaxe2", 1)
+		xPlayer.removeInventoryItem('Pickaxe2Broken', 1)
+		xPlayer.removeInventoryItem('PickaxeRepair', 1)
+	elseif GetItemCount(xPlayer.source, 'Pickaxe1Broken') > 0 then
+		xPlayer.addInventoryItem("Pickaxe1", 1)
+		xPlayer.removeInventoryItem('Pickaxe1Broken', 1)
+		xPlayer.removeInventoryItem('PickaxeRepair', 1)
+	else
+		TriggerClientEvent("pNotify:SendNotification", xPlayer.source, { text = 'شما کلنگ شکسته ندارید!', type = "error", timeout = 4000, layout = "bottomCenter"})
 	end
 end)
