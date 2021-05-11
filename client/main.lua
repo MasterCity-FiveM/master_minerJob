@@ -194,16 +194,17 @@ function FinalSpawn()
 	end)
 end
 
-UnderShowMessage = false
+local UnderShowMessage = false
 function showMessage(msg)
-	if UnderShowMessage == true then
-		return
-	end
 	Citizen.CreateThread(function()
-		UnderShowMessage = true
-		exports.pNotify:SendNotification({text = 'برای استخراج لطفا E بزنید.', type = "info", timeout = 3000})
-		Citizen.Wait(3500)
-		UnderShowMessage = false
+		if UnderShowMessage == false then
+			UnderShowMessage = true
+			Citizen.CreateThread(function()
+				exports.pNotify:SendNotification({text = msg, type = "info", timeout = 3000})
+				Citizen.Wait(3500)
+				UnderShowMessage = false
+			end)
+		end
 	end)
 end
 
