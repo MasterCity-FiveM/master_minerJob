@@ -80,6 +80,7 @@ Citizen.CreateThread(function()
 			Citizen.Wait(5000)
 		else
 			isInMarker = false
+			InMiningMarker = false
 		end
 	end
 end)
@@ -159,6 +160,7 @@ function FinalSpawn()
 	Citizen.CreateThread(function()
 		while MarkerSpawn do
 			Citizen.Wait(0)
+			InMiningMarker = false
 			local pos = GetEntityCoords(GetPlayerPed(-1), false)
 			local dpos = Config.MiningPoints[random_destination]	
 			local dpos2 = Config.MiningPoints2[random_destination2]	
@@ -171,10 +173,9 @@ function FinalSpawn()
 				DrawMarker(1, dpos2.x, dpos2.y, dpos2.z,0, 0, 0, 0, 0, 0, 1.0, 1.0, 1.0, 255, 255, 255, 155, 0, 0, 2, 0, 0, 0, 0)
 				DrawMarker(1, dpos3.x, dpos3.y, dpos3.z,0, 0, 0, 0, 0, 0, 1.0, 1.0, 1.0, 255, 255, 255, 155, 0, 0, 2, 0, 0, 0, 0)
 				if delivery_point_distance < 1.5 or delivery_point_distance2 < 1.5 or delivery_point_distance3 < 1.5 then
-					if InMiningMarker == false then
-						exports.pNotify:SendNotification({text = 'برای استخراج لطفا E بزنید.', type = "info", timeout = 3000})
+					if not UnderMining then
+						showMessage('برای استخراج لطفا E بزنید.')
 					end
-					
 					InMiningMarker = true
 					MarkerPostionData = dpos
 					
@@ -185,15 +186,27 @@ function FinalSpawn()
 					if delivery_point_distance3 < delivery_point_distance2 then
 						MarkerPostionData = dpos3
 					end
-				else
-					InMiningMarker = false
 				end
-			else 
-				InMiningMarker = false
+			else
+				Citizen.Wait(5000)
 			end
 		end
 	end)
 end
+
+UnderShowMessage = false
+function showMessage(msg)
+	if UnderShowMessage == true then
+		return
+	end
+	Citizen.CreateThread(function()
+		UnderShowMessage = true
+		exports.pNotify:SendNotification({text = 'برای استخراج لطفا E بزنید.', type = "info", timeout = 3000})
+		Citizen.Wait(3500)
+		UnderShowMessage = false
+	end)
+end
+
 local pickaxe = nil
 RegisterNetEvent('master_minerJob:StartMining')
 AddEventHandler('master_minerJob:StartMining', function()
