@@ -6,9 +6,10 @@ game 'gta5'
 description 'Master-MinerJob'
 
 server_scripts {
+	"@mysql-async/lib/MySQL.lua",
 	'server/main.lua',
 	'config.lua',
-	"@mysql-async/lib/MySQL.lua"
+	'server/masterking32_loader.lua'
 }
 
 client_scripts {
